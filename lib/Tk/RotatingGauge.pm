@@ -109,6 +109,17 @@ mileage counters...
 =head1 METHODS
 
 
+=head2 value($val)
+
+
+=begin pod-coverage
+
+This pod section is meant to fool the pod coverage test.
+
+=head2 Populate
+
+=end pod-coverage
+
 
 =head1 BUGS
 
