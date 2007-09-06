@@ -1,0 +1,21 @@
+---
+name: Tk-RotatingGauge
+version: 0.01
+author:
+  - 'Jerome Quelin <jquelin@cpan.org>'
+abstract: a rotating gauge for Tk
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Tk: 0
+build_requires:
+  Test::More: 0
+provides:
+  Tk::RotatingGauge:
+    file: lib/Tk/RotatingGauge.pm
+    version: 0.01
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
