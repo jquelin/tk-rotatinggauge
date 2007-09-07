@@ -37,18 +37,17 @@ sub Populate {
         -value   => [ 'METHOD',  undef, undef, undef ],
     );
 
-    # let's wait for canvas to be created before setting the value.
+    # store the initial value for after initialization.
     my $val = exists $args->{-value} ? delete $args->{-value} : 50 ;
-    $self->afterIdle( sub{ $self->configure(-value => $val) } );
+    $self->{Configure}{-value} = $val;
 
-    my $w = $self->cget('-width');
-    my $h = $self->cget('-height');
-    $self->createLine( 0, 1,  $w, 1  );
-    $self->createLine( 0, $h, $w, $h );
-    $self->afterIdle( sub {
-        my $w = $self->cget('-width');
-        $self->createLine( $w/2, 0, $w/2, $h, -fill=>'red', -width=>2)
-    } );
+    # let's wait for canvas to be created before initializing the
+    # various canvas items that will compose the gauge.
+    $self->afterIdle( sub { $self->_draw_items } );
+
+
+    #$self->createLine( 0, 1,  $w, 1  );
+    #$self->createLine( 0, $h, $w, $h );
 }
 
 
@@ -60,28 +59,60 @@ sub Populate {
 sub value {
     my ($self, $value) = @_;
 
-    my $from    = $self->cget('-from');
-    my $to      = $self->cget('-to');
+    my $v  = $self->{Configure}{-value};
+    my $dx = ($v - $value) * $self->{Configure}{-step};
+    $self->move( 'grid', $dx, 0 );
+    $self->{Configure}{-value} = $value;
+    return;
+}
 
-    #$value = $from if $value < $from;
-    #$value = $to   if $value > $to;
 
-    $self->delete( 'tick' );
+#
+# $gauge->_draw_items;
+#
+# Initialization of the various items that will compose the gauge.
+#
+sub _draw_items {
+    my ($self) = @_;
 
+    # get & compute some values...
     my $w = $self->{Configure}{-width};
     my $h = $self->{Configure}{-height};
+
+    my $from    = $self->{Configure}{-from};
+    my $to      = $self->{Configure}{-to};
     my $visible = $self->{Configure}{-visible};
+    my $step    = int($w / $visible);
 
-    my $step = $w / $visible;
-    my $frac = $value - int($value);
-    my $num  = ( floor( $value - ($visible/2) ) + 1 ) % $to;
+    $self->{Configure}{-step}  = $step;
 
-    foreach my $i ( 0 .. $visible ) {
-        my $x   = ( 1 - $frac + $i) * $step;
-        $self->createLine( $x, 0, $x, $h, -tags=>'tick' );
-        $self->createText( $x+$step/2, $h/2, -text=>$num, -tags=>'tick' );
-        $num = ($num+1) % $to;
+
+    # create the line showing the value.
+    $self->createLine( $w/2, 0, $w/2, $h, -fill=>'red', -width=>2);
+
+
+    # draw ticks $from .. $to.
+    foreach my $i ( $from .. $to-1 ) {
+        my $x = $i * $step;
+        $self->createLine( $x, 0, $x, $h, -tags=>'grid' );
+        $self->createText( $x+$step/2, $h/2, -text=>$i, -tags=>'grid' );
     }
+    # draw $visible ticks before $from and after $to.
+    foreach my $i ( 0 .. $visible ) {
+        my $x = -($i+1) * $step;
+        $self->createLine( $x, 0, $x, $h, -tags=>'grid' );
+        $self->createText( $x+$step/2, $h/2, -text=>$to-1-$i, -tags=>'grid' );
+        $x = ($to+$i) * $step;
+        $self->createLine( $x, 0, $x, $h, -tags=>'grid' );
+        $self->createText( $x+$step/2, $h/2, -text=>$from+$i, -tags=>'grid' );
+    }
+
+
+    # move the gauge to its initial value.
+    my $v  = $self->{Configure}{-value};
+    my $dx = ($visible/2-$v) * $step;
+    $self->move( 'grid', $dx, 0 );
+
 }
 
 
