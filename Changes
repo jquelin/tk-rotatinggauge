@@ -10,6 +10,11 @@ High-level changelog
 Low-level changelog
 ===================
 
+0.11 Fri Sep  7 12:32:51 CEST 2007
+ - new -policy flag to control out-of-bound values
+ - new example: clock based on Tk::RotatingGauge
+ - fix $step computation
+
 0.10 Fri Sep  7 11:08:25 CEST 2007
  - don't recreate items every time value changes: just move items
 
