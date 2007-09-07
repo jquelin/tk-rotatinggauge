@@ -1,5 +1,6 @@
 Build.PL
 Changes
+example/gauges.pl
 lib/Tk/RotatingGauge.pm
 LICENSE
 Makefile.PL
