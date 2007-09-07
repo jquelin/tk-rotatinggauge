@@ -88,8 +88,8 @@ Tk::RotatingGauge - a rotating gauge for Tk
 
     use Tk::RotatingGauge;
 
-    my $g = $mw->RotatingGauge(
-    );
+    my $g = $parent->RotatingGauge( @options );
+    $g->value(10.5);
 
 
 
@@ -101,15 +101,49 @@ mileage counters...
 
 
 
-
 =head1 STANDARD OPTIONS
 
-=head1 WIDGET-SPECIFIC OPTIONS
+B<-background>
+
+
+
+=head1 WIDGET OPTIONS
+
+=over 4
+
+
+=item B<-from>
+
+A real value corresponding to the minimum end of the gauge.
+
+
+=item B<-height>
+
+Specifies a desired window height that the widget should request
+from its geometry manager.
+
+
+=item B<-top>
+
+A real value corresponding to the maximum end of the gauge.
+
+
+=item B<-width>
+
+Specifies a desired window width that the widget should request
+from its geometry manager.
+
+
+=back
+
+
 
 =head1 METHODS
 
+=head2 $gauge->value($val)
 
-=head2 value($val)
+Sets the value that the gauge should indicate.
+
 
 
 =begin pod-coverage
@@ -119,6 +153,8 @@ This pod section is meant to fool the pod coverage test.
 =head2 Populate
 
 =end pod-coverage
+
+
 
 
 =head1 BUGS
