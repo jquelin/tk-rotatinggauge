@@ -21,10 +21,14 @@ Construct Tk::Widget 'RotatingGauge';
 
 our $VERSION   = '0.01';
 
+
+#
+# Populate - Tk internals
+#
 sub Populate {
     my( $self, $args ) = @_;
 
-
+    # create the parent widget, specify our options.
     $self->SUPER::Populate( $args );
     $self->ConfigSpecs(
         -from    => [ 'PASSIVE', undef, undef, 0   ],
@@ -32,6 +36,8 @@ sub Populate {
         -to      => [ 'PASSIVE', undef, undef, 100 ],
         -value   => [ 'METHOD',  undef, undef, undef ],
     );
+
+    # let's wait for canvas to be created before setting the value.
     my $val = exists $args->{-value} ? delete $args->{-value} : 50 ;
     $self->afterIdle( sub{ $self->configure(-value => $val) } );
 
@@ -46,6 +52,11 @@ sub Populate {
 }
 
 
+#
+# $gauge->value( $val );
+#
+# Sets a new value to the gauge. Update the canvas accordingly.
+#
 sub value {
     my ($self, $value) = @_;
 
@@ -114,7 +125,8 @@ B<-background>
 
 =item B<-from>
 
-A real value corresponding to the minimum end of the gauge.
+A real value corresponding to the minimum end of the gauge. Default to
+0.
 
 
 =item B<-height>
@@ -125,7 +137,18 @@ from its geometry manager.
 
 =item B<-top>
 
-A real value corresponding to the maximum end of the gauge.
+A real value corresponding to the maximum end of the gauge. Default to
+100.
+
+
+=item B<-value>
+
+The initial value to be shown. Default to 50.
+
+
+=item B<-visible>
+
+The number of values to be displayed. Default to 20.
 
 
 =item B<-width>
