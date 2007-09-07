@@ -3,11 +3,17 @@ Revision history for Tk-RotatingGauge
 High-level changelog
 ====================
 
+0.1x  new paint mode: no more whole repaints
 0.0x  initial releases
 
 
 Low-level changelog
 ===================
+
+0.10 Fri Sep  7 11:08:25 CEST 2007
+ - don't recreate items every time value changes: just move items
+
+**
 
 0.02 Thu Sep  6 15:54:06 CEST 2007
  - better pod
