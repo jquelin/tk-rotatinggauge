@@ -97,7 +97,7 @@ sub _draw_items {
     my $from    = $self->{Configure}{-from};
     my $to      = $self->{Configure}{-to};
     my $visible = $self->{Configure}{-visible};
-    my $step    = int($w / $visible);
+    my $step    = $w / $visible;
 
     $self->{Configure}{-step}  = $step;
 
