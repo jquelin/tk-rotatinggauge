@@ -31,10 +31,11 @@ sub Populate {
     # create the parent widget, specify our options.
     $self->SUPER::Populate( $args );
     $self->ConfigSpecs(
-        -from    => [ 'PASSIVE', undef, undef, 0   ],
-        -visible => [ 'PASSIVE', undef, undef, 20  ],
-        -to      => [ 'PASSIVE', undef, undef, 100 ],
-        -value   => [ 'METHOD',  undef, undef, undef ],
+        -from    => [ 'PASSIVE', undef, undef, 0        ],
+        -policy  => [ 'PASSIVE', undef, undef, 'rotate' ],
+        -to      => [ 'PASSIVE', undef, undef, 100      ],
+        -visible => [ 'PASSIVE', undef, undef, 20       ],
+        -value   => [ 'METHOD',  undef, undef, undef    ],
     );
 
     # store the initial value for after initialization.
@@ -59,11 +60,25 @@ sub Populate {
 sub value {
     my ($self, $value) = @_;
 
+    my $is_strict = $self->{Configure}{-policy} eq 'strict';
+    my $from   = $self->{Configure}{-from};
+    my $to     = $self->{Configure}{-to};
+
+    # check out-of-bounds.
+    if ( $value < $from ) {
+        my $frac = $value - int($value);
+        $value = $is_strict ? $from : $value % $to + $frac;
+    }
+    if ( $value >= $to ) {
+        my $frac = $value - int($value);
+        $value = $is_strict ? $to : $value % $to + $frac;
+    }
+
+    # move the canvas items around.
     my $v  = $self->{Configure}{-value};
     my $dx = ($v - $value) * $self->{Configure}{-step};
     $self->move( 'grid', $dx, 0 );
     $self->{Configure}{-value} = $value;
-    return;
 }
 
 
@@ -164,6 +179,13 @@ A real value corresponding to the minimum end of the gauge. Default to
 
 Specifies a desired window height that the widget should request
 from its geometry manager.
+
+
+=item B<-policy>
+
+Define the rotating policy: if set to C<rotate> (default), then
+out of bounds values will be mod-ed to fit in the wanted scale. If set
+to C<strict>, values can't go lower than C<-from> or higher than C<to>.
 
 
 =item B<-top>
