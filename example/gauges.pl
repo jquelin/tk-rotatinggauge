@@ -30,7 +30,7 @@ $g[$i] = $fr->RotatingGauge(
     -width   => $w, -height  => $h,
     -from    => $f, -to      => $t,
     -visible => $v, -value   => $val[$i]=$val,
-    -indicator => 'green',
+    -indicator => 'green', -box => 'yellow',
 )->pack(-side=>'left', -expand=>1, -fill=>'both');
 $fr->Button(-command=>sub{minus(0)}, -text=> '-')->pack(-side=>'left');
 $fr->Button(-command=>sub{plus(0)},  -text=> '+')->pack(-side=>'left');
