@@ -47,25 +47,32 @@ my $c_hours = $mw->RotatingGauge(
     -to      => 24,
     -visible => 12,
 )->pack(-side=>'top');
+my $c_wday = $mw->RotatingGauge(
+    -width   => $width, -height  => $height,
+    -value   => $now->day_of_week + $now->hour/24 + $now->minute/3600,
+    -from    => 1,
+    -to      => 7,
+    -visible => 4,
+    -labels  => [ qw[ foo Monday Tuesday Wednesday Thursday Friday Saturday Sunday ] ],
+)->pack(-side=>'top');
 
 
 $mw->repeat( 50,   \&update_secs );
 $mw->repeat( 1 * $SECS, \&update_mins );
-$mw->repeat( 1 * $MINS, \&update_hours );
-sub update_secs {
-    my $d = DateTime->from_epoch( epoch => time );
-    $c_secs->value($d->fractional_second);
-}
-sub update_mins {
-    my $d = DateTime->now;
-    my $m = $d->minute + $d->second / 60;
-    $c_mins->value($m);
-}
-sub update_hours {
-    my $d = DateTime->from_epoch( epoch=>time, time_zone=>'local' );
-    my $h = $d->hour + $d->minute / 60;
-    $c_hours->value($h);
-}
-
+$mw->repeat( 1 * $MINS, \&update_rest );
 MainLoop;
 exit;
+
+sub update_secs {
+    my $dt = DateTime->from_epoch( epoch => time ); # need hires precision
+    $c_secs->value( $dt->fractional_second );
+}
+sub update_mins {
+    my $dt = DateTime->now;
+    $c_mins->value( $dt->minute + $dt->second / 60 );
+}
+sub update_rest {
+    my $dt = DateTime->from_epoch( epoch=>time, time_zone=>'local' );
+    $c_hours->value( $dt->hour + $dt->minute / 60 );
+    $c_wday ->value( $dt->day_of_week + $dt->hour / 24 + $dt->minute / 3600 );
+}
