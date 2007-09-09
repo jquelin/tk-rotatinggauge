@@ -31,12 +31,13 @@ sub Populate {
     # create the parent widget, specify our options.
     $self->SUPER::Populate( $args );
     $self->ConfigSpecs(
-        -from    => [ 'PASSIVE', undef, undef, 0        ],
-        -labels  => [ 'PASSIVE', undef, undef, undef    ],
-        -policy  => [ 'PASSIVE', undef, undef, 'rotate' ],
-        -to      => [ 'PASSIVE', undef, undef, 100      ],
-        -visible => [ 'PASSIVE', undef, undef, 20       ],
-        -value   => [ 'METHOD',  undef, undef, undef    ],
+        -from      => [ 'PASSIVE', undef, undef, 0        ],
+        -indicator => [ 'PASSIVE', undef, undef, 'red'    ],
+        -labels    => [ 'PASSIVE', undef, undef, undef    ],
+        -policy    => [ 'PASSIVE', undef, undef, 'rotate' ],
+        -to        => [ 'PASSIVE', undef, undef, 100      ],
+        -visible   => [ 'PASSIVE', undef, undef, 20       ],
+        -value     => [ 'METHOD',  undef, undef, undef    ],
     );
 
     # store the initial value for after initialization.
@@ -101,9 +102,10 @@ sub _draw_items {
     $self->{Configure}{-step}  = $step;
 
 
-    # create the line showing the value.
-    $self->createLine( $w/2, 0, $w/2, $h, -fill=>'red', -width=>2);
-
+    if ( $self->{Configure}{-indicator} ne 'none' ) {
+        # create the line showing the value.
+        $self->createLine( $w/2, 0, $w/2, $h, -fill=>$self->{Configure}{-indicator}, -width=>2);
+    }
 
     # draw ticks $from .. $to.
     foreach my $i ( $from .. $to-1 ) {
