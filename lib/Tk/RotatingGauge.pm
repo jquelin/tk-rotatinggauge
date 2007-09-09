@@ -117,10 +117,12 @@ sub _draw_items {
     }
     # draw $visible ticks before $from and after $to.
     foreach my $i ( 0 .. $visible ) {
-        my $x    = -($i+1) * $step;
+        # before $from
+        my $x    = -($i+1-$from) * $step;
         my $text = defined $labels ? $labels->[$to-1-$i] : $to-1-$i;
         $self->createLine( $x, 0, $x, $h, -tags=>'grid' );
         $self->createText( $x+$step/2, $h/2, -text=>$text, -tags=>'grid' );
+        # after $to
         $x    = ($to+$i) * $step;
         $text = defined $labels ? $labels->[$from+$i] : $from+$i;
         $self->createLine( $x, 0, $x, $h, -tags=>'grid' );
