@@ -11,6 +11,10 @@ High-level changelog
 Low-level changelog
 ===================
 
+0.21 Sun Sep  9 11:01:26 CEST 2007
+ - new option -box
+ - new option -indicator
+
 0.20 Sat Sep  8 10:46:05 CEST 2007
  - introducing optional labels
  - fixed bug for non-zero minimum
