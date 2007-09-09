@@ -71,6 +71,13 @@ my $c_mons = $mw->RotatingGauge(
     -labels  => [ qw[ foo January February March April May June July
                       August September October November December ] ],
 )->pack(-side=>'top');
+my $c_years = $mw->RotatingGauge(
+    -width   => $width, -height  => $height,
+    -value   => $now->year + $now->day_of_year / 366,
+    -from    => $now->year - 10,
+    -to      => $now->year + 10,
+    -visible => 3,
+)->pack(-side=>'top');
 
 
 $mw->repeat( 50,   \&update_secs );
@@ -93,4 +100,5 @@ sub update_rest {
     $c_wdays->value( $dt->day_of_week + $dt->hour / 24 + $dt->minute / 3600 );
     $c_days ->value( $dt->day + $dt->hour / 24 + $dt->minute / 3600 );
     $c_mons ->value( $dt->month + $dt->day / 32 + $dt->hour / 768 );
+    $c_years->value( $dt->year + $dt->day_of_year / 366 );
 }
