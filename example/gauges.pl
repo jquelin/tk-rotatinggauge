@@ -17,7 +17,7 @@ use Tk;
 use Tk::RotatingGauge;
 
 my ($w, $h)     = (200, 30);
-my ($f, $t, $v) = (0, 10, 4);
+my ($f, $t, $v) = (1, 7, 3);
 my $val = 5;
 
 my $mw = Tk::MainWindow->new;
