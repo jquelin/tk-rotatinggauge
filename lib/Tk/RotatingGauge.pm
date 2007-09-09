@@ -187,6 +187,12 @@ Specifies a desired window height that the widget should request
 from its geometry manager.
 
 
+=item B<-indicator>
+
+Specifies the color of the central indicator. If set to C<none>, then no
+central indicator will be drawn. Default to C<red>.
+
+
 =item B<-policy>
 
 Define the rotating policy: if set to C<rotate> (default), then
