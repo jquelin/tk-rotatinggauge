@@ -31,6 +31,7 @@ sub Populate {
     # create the parent widget, specify our options.
     $self->SUPER::Populate( $args );
     $self->ConfigSpecs(
+        -box       => [ 'PASSIVE', undef, undef, 'black'  ],
         -from      => [ 'PASSIVE', undef, undef, 0        ],
         -indicator => [ 'PASSIVE', undef, undef, 'red'    ],
         -labels    => [ 'PASSIVE', undef, undef, undef    ],
@@ -47,10 +48,6 @@ sub Populate {
     # let's wait for canvas to be created before initializing the
     # various canvas items that will compose the gauge.
     $self->afterIdle( sub { $self->_draw_items } );
-
-
-    #$self->createLine( 0, 1,  $w, 1  );
-    #$self->createLine( 0, $h, $w, $h );
 }
 
 
@@ -102,9 +99,15 @@ sub _draw_items {
     $self->{Configure}{-step}  = $step;
 
 
+    # create the central line showing the value.
     if ( $self->{Configure}{-indicator} ne 'none' ) {
-        # create the line showing the value.
         $self->createLine( $w/2, 0, $w/2, $h, -fill=>$self->{Configure}{-indicator}, -width=>2);
+    }
+
+    # create the top / bottom lines if needed.
+    if ( $self->{Configure}{-box} ne 'none' ) {
+        $self->createLine( 0, 1,  $w, 1,  -fill=>$self->{Configure}{-box} );
+        $self->createLine( 0, $h, $w, $h, -fill=>$self->{Configure}{-box} );
     }
 
     # draw ticks $from .. $to.
@@ -173,6 +176,12 @@ B<-background>
 =head1 WIDGET OPTIONS
 
 =over 4
+
+
+=item B<-box>
+
+Specifies the color of the lines boxing the gauge. If set to C<none>,
+then no box will be drawn. Default to C<black>.
 
 
 =item B<-from>
