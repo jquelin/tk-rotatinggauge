@@ -3,12 +3,19 @@ Revision history for Tk-RotatingGauge
 High-level changelog
 ====================
 
-0.1x  new paint mode: no more whole repaints
+0.2X  new options
+0.1x  new paint mode
 0.0x  initial releases
 
 
 Low-level changelog
 ===================
+
+0.20
+ - introducing optional labels
+ - fixed bug for non-zero minimum
+
+**
 
 0.11 Fri Sep  7 12:32:51 CEST 2007
  - new -policy flag to control out-of-bound values

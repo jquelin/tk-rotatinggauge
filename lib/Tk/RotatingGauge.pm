@@ -66,14 +66,11 @@ sub value {
     my $to     = $self->{Configure}{-to};
 
     # check out-of-bounds.
-    if ( $value < $from ) {
-        my $frac = $value - int($value);
-        $value = $is_strict ? $from : $value % $to + $frac;
-    }
-    if ( $value >= $to ) {
-        my $frac = $value - int($value);
-        $value = $is_strict ? $to : $value % $to + $frac;
-    }
+    my $frac = $value - int($value);
+    $value = $is_strict ? $from : $value % ($to-$from) + $frac
+        if $value < $from;
+    $value = $is_strict ? $to : $value % ($to-$from) + $frac
+        if $value >= $to;
 
     # move the canvas items around.
     my $v  = $self->{Configure}{-value};
@@ -126,7 +123,7 @@ sub _draw_items {
         $x    = ($to+$i) * $step;
         $text = defined $labels ? $labels->[$from+$i] : $from+$i;
         $self->createLine( $x, 0, $x, $h, -tags=>'grid' );
-        $self->createText( $x+$step/2, $h/2, -text=>$from+$i, -tags=>'grid' );
+        $self->createText( $x+$step/2, $h/2, -text=>$text, -tags=>'grid' );
     }
 
 

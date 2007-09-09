@@ -35,25 +35,41 @@ my $c_secs = $mw->RotatingGauge(
 )->pack(-side=>'top');
 my $c_mins = $mw->RotatingGauge(
     -width   => $width, -height  => $height,
-    -value   => $now->minute + $now->second/60,
+    -value   => $now->minute + $now->second / 60,
     -from    => 0,
     -to      => 60,
     -visible => 30,
 )->pack(-side=>'top');
 my $c_hours = $mw->RotatingGauge(
     -width   => $width, -height  => $height,
-    -value   => $now->hour + $now->minute/60,
+    -value   => $now->hour + $now->minute / 60,
     -from    => 0,
     -to      => 24,
     -visible => 12,
 )->pack(-side=>'top');
-my $c_wday = $mw->RotatingGauge(
+my $c_wdays = $mw->RotatingGauge(
     -width   => $width, -height  => $height,
-    -value   => $now->day_of_week + $now->hour/24 + $now->minute/3600,
+    -value   => $now->day_of_week + $now->hour / 24 + $now->minute / 3600,
     -from    => 1,
-    -to      => 7,
+    -to      => 8,
     -visible => 4,
     -labels  => [ qw[ foo Monday Tuesday Wednesday Thursday Friday Saturday Sunday ] ],
+)->pack(-side=>'top');
+my $c_days = $mw->RotatingGauge(
+    -width   => $width, -height  => $height,
+    -value   => $now->day + $now->hour / 24 + $now->minute / 3600,
+    -from    => 1,
+    -to      => 32,
+    -visible => 16,
+)->pack(-side=>'top');
+my $c_mons = $mw->RotatingGauge(
+    -width   => $width, -height  => $height,
+    -value   => $now->month + $now->day / 32 + $now->hour / 768, # 768=24*32
+    -from    => 1,
+    -to      => 13,
+    -visible => 6,
+    -labels  => [ qw[ foo January February March April May June July
+                      August September October November December ] ],
 )->pack(-side=>'top');
 
 
@@ -74,5 +90,7 @@ sub update_mins {
 sub update_rest {
     my $dt = DateTime->from_epoch( epoch=>time, time_zone=>'local' );
     $c_hours->value( $dt->hour + $dt->minute / 60 );
-    $c_wday ->value( $dt->day_of_week + $dt->hour / 24 + $dt->minute / 3600 );
+    $c_wdays->value( $dt->day_of_week + $dt->hour / 24 + $dt->minute / 3600 );
+    $c_days ->value( $dt->day + $dt->hour / 24 + $dt->minute / 3600 );
+    $c_mons ->value( $dt->month + $dt->day / 32 + $dt->hour / 768 );
 }
