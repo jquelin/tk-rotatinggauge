@@ -63,6 +63,18 @@ $fr->Checkbutton(
     -command  => sub { $g[$i]->configure(-policy=>$pol[$i]); },
 )->pack(-side=>'left');
 
+#
+$i = 2;
+$fr = $mw->Frame->pack;
+$g[$i] = $fr->RotatingGauge(
+    -width   => $h, -height  => $w,
+    -from    => $f, -to      => $t,
+    -visible => $v, -value   => $val[$i]=$val,
+    -orient  => 'vert',
+)->pack(-side=>'left', -expand=>1, -fill=>'both');
+$fr->Button(-command=>sub{minus(2)}, -text=> '-')->pack(-side=>'left');
+$fr->Button(-command=>sub{plus(2)},  -text=> '+')->pack(-side=>'left');
+
 MainLoop;
 exit;
 
