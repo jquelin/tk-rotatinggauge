@@ -188,6 +188,10 @@ mileage counters...
 
 B<-background>
 
+B<-orient>
+
+See Tk::options for details of the standard options.
+
 
 
 =head1 WIDGET OPTIONS
