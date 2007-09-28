@@ -11,12 +11,15 @@ High-level changelog
 Low-level changelog
 ===================
 
+0.22 Sun Sep  9 14:56:43 CEST 2007
+ - new option -orient (gauge orientation)
+
 0.21 Sun Sep  9 11:01:26 CEST 2007
- - new option -box
- - new option -indicator
+ - new option -box (color of rounding box)
+ - new option -indicator (color of central indicator)
 
 0.20 Sat Sep  8 10:46:05 CEST 2007
- - introducing optional labels
+ - new option -labels (optional labels)
  - fixed bug for non-zero minimum
 
 **
