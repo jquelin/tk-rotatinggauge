@@ -19,7 +19,7 @@ use base qw[ Tk::Derived Tk::Canvas ];
 Construct Tk::Widget 'RotatingGauge';
 
 
-our $VERSION   = '0.22';
+our $VERSION   = '0.23';
 
 
 #
@@ -153,7 +153,6 @@ sub _draw_items {
     my $d = ($visible/2-$v) * $step;
     my @delta = $is_horiz ? ($d,0) : (0,$d);
     $self->move( 'grid', @delta );
-
 }
 
 

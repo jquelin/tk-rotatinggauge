@@ -11,6 +11,9 @@ High-level changelog
 Low-level changelog
 ===================
 
+0.23 Tue Oct  9 17:53:26 CEST 2007
+ - requiring perl 5.8.0
+
 0.22 Sun Sep  9 14:56:43 CEST 2007
  - new option -orient (gauge orientation)
 
