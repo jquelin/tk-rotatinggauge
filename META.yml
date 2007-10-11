@@ -1,6 +1,6 @@
 ---
 name: Tk-RotatingGauge
-version: 0.23
+version: 0.24
 author:
   - 'Jerome Quelin <jquelin@cpan.org>'
 abstract: a rotating gauge for Tk
@@ -11,11 +11,11 @@ requires:
   Tk: 0
 build_requires:
   Test::More: 0
-  perl: 5.8.0
+  perl: 5.008
 provides:
   Tk::RotatingGauge:
     file: lib/Tk/RotatingGauge.pm
-    version: 0.23
+    version: 0.24
 generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

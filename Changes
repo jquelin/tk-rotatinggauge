@@ -11,6 +11,9 @@ High-level changelog
 Low-level changelog
 ===================
 
+0.24 Thu Oct 11 09:41:45 CEST 2007
+ - fixed way of requiring 5.008
+
 0.23 Tue Oct  9 17:53:26 CEST 2007
  - requiring perl 5.8.0
 

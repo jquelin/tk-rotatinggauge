@@ -19,7 +19,7 @@ use base qw[ Tk::Derived Tk::Canvas ];
 Construct Tk::Widget 'RotatingGauge';
 
 
-our $VERSION   = '0.23';
+our $VERSION   = '0.24';
 
 
 #
