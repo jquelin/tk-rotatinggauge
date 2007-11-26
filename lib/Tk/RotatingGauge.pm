@@ -19,7 +19,7 @@ use base qw[ Tk::Derived Tk::Canvas ];
 Construct Tk::Widget 'RotatingGauge';
 
 
-our $VERSION   = '0.24';
+our $VERSION   = '0.25';
 
 
 #
@@ -112,9 +112,9 @@ sub _draw_items {
     # create the top / bottom lines if needed.
     if ( $self->{Configure}{-box} ne 'none' ) {
         my @coords;
-        @coords = $is_horiz ? (1, 1, $w, 1) : (1, 1, 1, $h); 
+        @coords = $is_horiz ? (1, 1, $w, 1) : (1, 1, 1, $h);
         $self->createLine( @coords, -fill=>$self->{Configure}{-box} );
-        @coords = $is_horiz ? (1, $h, $w, $h) : ($w, 1, $w, $h); 
+        @coords = $is_horiz ? (1, $h, $w, $h) : ($w, 1, $w, $h);
         $self->createLine( @coords, -fill=>$self->{Configure}{-box} );
     }
 

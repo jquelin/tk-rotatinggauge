@@ -11,6 +11,9 @@ High-level changelog
 Low-level changelog
 ===================
 
+0.25 Mon Nov 26 12:40:10 CET 2007
+ - kwalitee/cpants release
+
 0.24 Thu Oct 11 09:41:45 CEST 2007
  - fixed way of requiring 5.008
 
