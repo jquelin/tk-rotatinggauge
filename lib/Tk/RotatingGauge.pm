@@ -4,11 +4,11 @@ use strict;
 package Tk::RotatingGauge;
 # ABSTRACT: a rotating gauge for tk
 
-use POSIX qw[ floor ];
+use POSIX qw{ floor };
 use Tk;
 use Tk::Canvas;
 
-use base qw[ Tk::Derived Tk::Canvas ];
+use base qw{ Tk::Derived Tk::Canvas };
 Construct Tk::Widget 'RotatingGauge';
 
 
@@ -145,7 +145,6 @@ sub _draw_items {
     my @delta = $is_horiz ? ($d,0) : (0,$d);
     $self->move( 'grid', @delta );
 }
-
 
 
 1;
