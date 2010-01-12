@@ -150,6 +150,8 @@ sub _draw_items {
 1;
 __END__
 
+=for Pod::Coverage::TrustPod
+    Populate
 
 =head1 SYNOPSIS
 
@@ -245,16 +247,6 @@ from its geometry manager.
 =head2 $gauge->value($val)
 
 Sets the value that the gauge should indicate.
-
-
-
-=begin pod-coverage
-
-This pod section is meant to fool the pod coverage test.
-
-=head2 Populate
-
-=end pod-coverage
 
 
 
