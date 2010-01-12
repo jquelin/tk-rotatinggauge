@@ -42,7 +42,7 @@ sub Populate {
 }
 
 
-=meth $gauge->value($val);
+=method $gauge->value($val);
 
 Sets the value that the gauge should indicate.
 
