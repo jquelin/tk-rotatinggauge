@@ -1,15 +1,12 @@
 Revision history for Tk-RotatingGauge
 
-High-level changelog
-====================
+{{$NEXT}}
 
-0.2x  new options
-0.1x  new paint mode
-0.0x  initial releases
+1.100120  2010-01-12 19:36:08 Europe/Paris
+ - no more makefile.pl, using module::build exclusively
+ - migration to dist-zilla (transparent for end-user)
 
-
-Low-level changelog
-===================
+**
 
 0.25 Mon Nov 26 12:40:10 CET 2007
  - kwalitee/cpants release
