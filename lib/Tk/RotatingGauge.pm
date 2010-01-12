@@ -258,26 +258,23 @@ This pod section is meant to fool the pod coverage test.
 
 
 
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<< < bug-tk-rotatinggauge at
-rt.cpan.org> >>, or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Tk-RotatingGauge>.  I will be
-notified, and then you'll automatically be notified of progress on your
-bug as I make changes.
-
-
-
 =head1 SEE ALSO
 
-C<Tk::RotatingGauge> development takes place on
-L<http://tk-rotatinggauge.googlecode.com> - feel free to join us.
-
-
-You can also look for information on this module at:
+You can find more information on this module at:
 
 =over 4
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/Tk-RotatingGauge>
+
+=item * See open / report bugs
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Tk-RotatingGauge>
+
+=item * Git repository
+
+L<http://github.com/jquelin/tk-rotatinggauge>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
@@ -287,10 +284,5 @@ L<http://annocpan.org/dist/Tk-RotatingGauge>
 
 L<http://cpanratings.perl.org/d/Tk-RotatingGauge>
 
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Tk-RotatingGauge>
-
 =back
-
 
