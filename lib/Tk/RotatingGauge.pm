@@ -2,6 +2,7 @@ use warnings;
 use strict;
 
 package Tk::RotatingGauge;
+# ABSTRACT: a rotating gauge for tk
 
 use POSIX qw[ floor ];
 use Tk;
@@ -151,11 +152,6 @@ sub _draw_items {
 
 1;
 __END__
-
-=head1 NAME
-
-Tk::RotatingGauge - a rotating gauge for Tk
-
 
 
 =head1 SYNOPSIS
