@@ -1,7 +1,7 @@
-package Tk::RotatingGauge;
-
 use warnings;
 use strict;
+
+package Tk::RotatingGauge;
 
 use POSIX qw[ floor ];
 use Tk;
