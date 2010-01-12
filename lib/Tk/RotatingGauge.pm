@@ -12,6 +12,7 @@ use base qw{ Tk::Derived Tk::Canvas };
 Construct Tk::Widget 'RotatingGauge';
 
 
+# -- builders & initializers
 
 =attr -background
 
@@ -98,6 +99,8 @@ sub Populate {
 }
 
 
+# -- public methods
+
 =method $gauge->value($val);
 
 Sets the value that the gauge should indicate.
@@ -126,6 +129,8 @@ sub value {
     $self->{Configure}{-value} = $value;
 }
 
+
+# -- private methods
 
 #
 # $gauge->_draw_items;
@@ -220,8 +225,8 @@ __END__
 
 =head1 DESCRIPTION
 
-This perl module provides a new Tk widget representing a gauge where the
-current value always stays at the same place. Think about your old
+This perl module provides a new L<Tk> widget representing a gauge where
+the current value always stays at the same place. Think about your old
 mileage counters...
 
 A rotating gauge item accepts the options described below.
