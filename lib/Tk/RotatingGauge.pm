@@ -12,6 +12,62 @@ use base qw{ Tk::Derived Tk::Canvas };
 Construct Tk::Widget 'RotatingGauge';
 
 
+
+=attr -background
+
+See L<Tk::options> for more information on this standard option.
+
+=attr -orient
+
+See L<Tk::options> for more information on this standard option.
+
+=attr -box
+
+Specifies the color of the lines boxing the gauge. If set to C<none>,
+then no box will be drawn. Default to C<black>.
+
+=attr -from
+
+A real value corresponding to the minimum end of the gauge. Default to
+0.
+
+=attr -height
+
+Specifies a desired window height that the widget should request
+from its geometry manager.
+
+=attr -indicator
+
+Specifies the color of the central indicator. If set to C<none>, then no
+central indicator will be drawn. Default to C<red>.
+
+=attr -policy
+
+Define the rotating policy: if set to C<rotate> (default), then
+out of bounds values will be mod-ed to fit in the wanted scale. If set
+to C<strict>, values can't go lower than C<-from> or higher than C<to>.
+
+=attr -to
+
+A real value corresponding to the maximum end of the gauge. Default to
+100.
+
+=attr -value
+
+The initial value to be shown. Default to 50.
+
+=attr -visible
+
+The number of values to be displayed. Default to 20.
+
+=attr -width
+
+Specifies a desired window width that the widget should request
+from its geometry manager.
+
+=cut
+
+
 #
 # Populate - Tk internals
 #
@@ -168,79 +224,7 @@ This perl module provides a new Tk widget representing a gauge where the
 current value always stays at the same place. Think about your old
 mileage counters...
 
-
-
-=head1 STANDARD OPTIONS
-
-B<-background>
-
-B<-orient>
-
-See Tk::options for details of the standard options.
-
-
-
-=head1 WIDGET OPTIONS
-
-=over 4
-
-
-=item B<-box>
-
-Specifies the color of the lines boxing the gauge. If set to C<none>,
-then no box will be drawn. Default to C<black>.
-
-
-=item B<-from>
-
-A real value corresponding to the minimum end of the gauge. Default to
-0.
-
-
-=item B<-height>
-
-Specifies a desired window height that the widget should request
-from its geometry manager.
-
-
-=item B<-indicator>
-
-Specifies the color of the central indicator. If set to C<none>, then no
-central indicator will be drawn. Default to C<red>.
-
-
-=item B<-policy>
-
-Define the rotating policy: if set to C<rotate> (default), then
-out of bounds values will be mod-ed to fit in the wanted scale. If set
-to C<strict>, values can't go lower than C<-from> or higher than C<to>.
-
-
-=item B<-top>
-
-A real value corresponding to the maximum end of the gauge. Default to
-100.
-
-
-=item B<-value>
-
-The initial value to be shown. Default to 50.
-
-
-=item B<-visible>
-
-The number of values to be displayed. Default to 20.
-
-
-=item B<-width>
-
-Specifies a desired window width that the widget should request
-from its geometry manager.
-
-
-=back
-
-
+A rotating gauge item accepts the options described below.
 
 
 =head1 SEE ALSO
