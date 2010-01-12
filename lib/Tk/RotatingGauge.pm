@@ -42,11 +42,12 @@ sub Populate {
 }
 
 
-#
-# $gauge->value( $val );
-#
-# Sets a new value to the gauge. Update the canvas accordingly.
-#
+=meth $gauge->value($val);
+
+Sets the value that the gauge should indicate.
+
+=cut
+
 sub value {
     my ($self, $value) = @_;
 
@@ -240,13 +241,6 @@ from its geometry manager.
 
 =back
 
-
-
-=head1 METHODS
-
-=head2 $gauge->value($val)
-
-Sets the value that the gauge should indicate.
 
 
 
