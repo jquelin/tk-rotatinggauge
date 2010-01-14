@@ -2,6 +2,10 @@ Revision history for Tk-RotatingGauge
 
 {{$NEXT}}
 
+1.100140  2010-01-14 11:27:51 Europe/Paris
+ - requiring perl 5.8.x
+ - forgot some hidden prereqs
+
 1.100120  2010-01-12 19:36:08 Europe/Paris
  - no more makefile.pl, using module::build exclusively
  - migration to dist-zilla (transparent for end-user)
